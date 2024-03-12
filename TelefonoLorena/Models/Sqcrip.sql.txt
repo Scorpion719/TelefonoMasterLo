@@ -1,0 +1,21 @@
+Create database TelefonoLore
+use TelefonoLore
+-- Crear la tabla Cliente
+CREATE TABLE Clientes (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Nombre VARCHAR(100) NOT NULL,
+    Apellido VARCHAR(100) NOT NULL
+);
+GO
+
+-- Crear la tabla TelefonoCliente para almacenar los números de teléfono de los clientes
+CREATE TABLE TelefonoClientes (
+    Id INT PRIMARY KEY IDENTITY(1,1), -- Cambiando el nombre de la columna a 'Id'
+    IdCliente INT NOT NULL,
+    NumeroTelefono VARCHAR(15) NOT NULL,
+	Compañia VARCHAR(100) NULL,
+    FOREIGN KEY (IdCliente) REFERENCES Clientes(Id) ON DELETE CASCADE
+);
+GO
+ALTER TABLE TelefonoClientes
+ADD Compañia VARCHAR(100) NULL; -- Aquí se define el nombre y el tipo de datos de la nueva columna
